@@ -7,11 +7,7 @@ require_once "Connection.php";
 require_once "../models/GenerarQRModel.php";
 
 // Consulta para obtener los datos del pedido con id_pedido = 4
-<<<<<<< HEAD
 $id_pedido = 4; // Puedes cambiar esto por el id_pedido deseado
-=======
-$id_pedido = 10; // Puedes cambiar esto por el id_pedido deseado
->>>>>>> main
 $query = "SELECT * FROM pedidos WHERE id_pedido = $id_pedido";
 
 $result = $conn->query($query);
