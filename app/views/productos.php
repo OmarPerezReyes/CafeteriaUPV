@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav nav-fill">
                 <li class="nav-item">
                     <a class="nav-link" href="carritoLlenoController.php">
                         Carrito 
@@ -20,7 +20,9 @@
                         <span class="badge badge-pill badge-primary"><?php echo $numProductosEnCarrito; ?></span>
                     </a>
                 </li>
-                <li class="nav-item">
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-auto">
                     <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
                 </li>
             </ul>
