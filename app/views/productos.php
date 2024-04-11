@@ -18,6 +18,7 @@
         <?php foreach ($productos as $producto): ?>
             <form action="agregar_al_carrito.php" method="post">
                 <button type="submit" name="agregar" value="<?php echo $producto['id']; ?>">
+                    <img src="<?php echo $producto['imagen_url']; ?>" alt="<?php echo $producto['nombre']; ?>" style="width: 50px; height: 50px;">
                     <?php echo $producto['nombre']; ?> - $<?php echo $producto['precio']; ?>
                 </button>
             </form>
