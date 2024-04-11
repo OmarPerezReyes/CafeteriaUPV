@@ -90,18 +90,15 @@
         <div class="row justify-content-center">
             <div class="col-md-6 login-form">
                 <div class="login-header">
-                    <img src="public/images/logo.png" alt="Logo de la cafetería" class="login-logo">
+                    <img src="../../public/images/logo.png" alt="Logo de la cafetería" class="login-logo">
                     <h2>Registro de Usuario</h2>
                 </div>
 
-                <?php if (isset($mensajeError)) : ?>
-                    <p><?php echo $mensajeError; ?></p>
-                <?php endif; ?>
 
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form action="../controllers/registro_controller.php" method="post">
                     <div class="form-group">
                         <label for="matricula">Matrícula:</label><br>
-                        <input type="number" id="matricula" name="matricula" min="0" class="form-control" required>
+                        <input type="text" id="matricula" name="matricula" min="0" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label><br>
@@ -121,13 +118,14 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label><br>
-                        <input type="number" id="telefono" name="telefono" class="form-control" required>
+                        <input type="text" id="telefono" name="telefono" class="form-control" required>
                     </div>
                     <button type="submit" name="registro" class="btn btn-login btn-block">Registrar</button>
                 </form>
             </div>
         </div>
     </div>
+    <br><br>
 </body>
 
 </html>
