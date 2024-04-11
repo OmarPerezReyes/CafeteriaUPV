@@ -19,7 +19,7 @@ class UsuarioModel {
             return false; // El correo ya está registrado
         } else {
             // Insertar el nuevo usuario en la base de datos
-            $consulta = "INSERT INTO clientes (matricula, nombre, apellido, correo, contrasena, telefono) VALUES (?, ?, ?, ?, ?, ?)";
+            $consulta = "INSERT INTO clientes (matricula, nombre, apellido, correo, contraseña, teléfono) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->conexion->prepare($consulta);
             $stmt->bind_param("ssssss", $matricula, $nombre, $apellido, $correo, $contrasena, $telefono);
             
