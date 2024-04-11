@@ -1,4 +1,31 @@
+<?php
+session_start();
 
+// Incluir el archivo de conexión y definir las variables $productosSeleccionados y $totalCompra
+require_once "Connection.php"; // Incluimos el archivo de conexión
+require_once "../models/ProductoModel.php";
+
+// Instanciar el modelo de productos
+$productoModel = new ProductoModel($conn);
+
+// Obtener todos los productos
+$productos = $productoModel->obtenerProductos();
+
+$productosSeleccionados = array();
+$totalCompra = 0;
+
+if (!empty($_SESSION['carrito'])) {
+    foreach ($_SESSION['carrito'] as $idProducto) {
+        foreach ($productos as $producto) {
+            if ($producto['id_producto'] == $idProducto) {
+                $productosSeleccionados[] = $producto;
+                $totalCompra += $producto['precio'];
+                break;
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,8 +54,28 @@
     </nav>
 
     <div class="container">
-        <h1 class="mt-4">Generar Código QR</h1>
-        <?php
+      
+    </div>
+  <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="ticket">
+                    <h2 class="mb-4">Ticket de Compra</h2>
+                    <p><strong>Número de Orden:</strong> <?php echo rand(10000, 99999); ?></p>
+                    <p><strong>Fecha:</strong> <?php echo date('Y-m-d H:i:s'); ?></p>
+                    <hr>
+                    <h3>Productos:</h3>
+                    <?php foreach ($productosSeleccionados as $producto): ?>
+                        <p><?php echo $producto['nombre_Producto']; ?> - $<?php echo $producto['precio']; ?></p>
+                    <?php endforeach; ?>
+                    <hr>
+                    <p><strong>Total de Compra:</strong> $<?php echo $totalCompra; ?></p>
+                    <p><strong>Pago en Efectivo:</strong> $<?php echo $totalCompra; ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
 
 // Incluir el archivo de conexión
 require_once "Connection.php";
@@ -64,7 +111,7 @@ if ($result->num_rows > 0) {
         ../../temp/pedido_' . $datos_pedido['codigo_Recogida'] . '.png';
 
         // Mostrar la imagen del código QR
-        echo '<img src="' . $qr_image . '" alt="Código QR del Pedido ' . $id_pedido . '" />';
+        echo '<div class="text-center"><img src="' . $qr_image . '" alt="Código QR del Pedido ' . $id_pedido . '" style="max-width: 300px;" /></div>';
     } else {
         echo "Error al generar el código QR para el pedido con ID: " . $id_pedido;
         // Puedes redirigir o mostrar algún mensaje de error aquí
@@ -77,7 +124,9 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Agregar la referencia al JS de Bootstrap y jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
