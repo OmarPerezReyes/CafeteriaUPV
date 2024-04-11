@@ -21,15 +21,20 @@
             display: flex;
             align-items: center;
         }
+        .eliminar-producto {
+            margin-top: 10px;
+        }
         .total {
             margin-top: 20px;
             font-weight: bold;
         }
+        .navbar {
+            margin-bottom: 20px; /* Añadir más margen inferior a la barra de navegación */
+        }
     </style>
 </head>
 <body>
-    <?php
-    var_dump($_SESSION['carrito']);?>
+    <?php //var_dump($_SESSION['carrito']); ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Carrito de Compras</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +47,7 @@
                     <a class="nav-link" href="productos_controller.php">Volver al Menú de Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cerrar_sesion.php">Cerrar Sesión</a>
+                    <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </div>
@@ -59,17 +64,28 @@
                     <h2 class="mb-4">Detalles de los Productos Seleccionados</h2>
                     <?php foreach ($productosSeleccionados as $index => $producto): ?>
                         <div class="producto">
-                            <div class="producto-info">
-                                <img src="<?php echo $producto["imagen_url"]; ?>" alt="<?php echo $producto["nombre"]; ?>">
-                                <p class="mb-0"><strong><?php echo $producto["nombre"]; ?></strong> - $<?php echo $producto["precio"]; ?></p>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="producto-info">
+                                        <img src="<?php echo $producto["imagen_url"]; ?>" alt="<?php echo $producto["nombre"]; ?>">
+                                        <p class="mb-0"><strong><?php echo $producto["nombre"]; ?></strong> - $<?php echo $producto["precio"]; ?></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-danger eliminar-producto" data-index="<?php echo $index; ?>">Eliminar</button>
+                                </div>
                             </div>
-                            <button class="btn btn-danger eliminar-producto" data-index="<?php echo $index; ?>">Eliminar</button>
                         </div>
                     <?php endforeach; ?>
 
                     <div class="total">
                         <p>Total de compra: $<?php echo $totalCompra; ?></p>
                     </div>
+
+<div class="text-center mt-4">
+    <button class="btn btn-success">Realizar Pedido</button>
+</div>
+
                 <?php endif; ?>
             </div>
         </div>
@@ -82,8 +98,7 @@
         $(document).ready(function() {
             $('.eliminar-producto').click(function() {
                 var index = $(this).data('index');
-                        console.log('Índice del producto a eliminar:', index); // Agregar esta línea para depurar
-
+                console.log('Índice del producto a eliminar:', index);
                 $.ajax({
                     type: 'POST',
                     url: 'eliminar_producto.php',

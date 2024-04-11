@@ -90,6 +90,10 @@
                         <input type="password" name="contraseña" class="form-control" placeholder="Contraseña" required>
                         <i class="fas fa-lock"></i>
                     </div>
+                    <div class="text-center">
+        ¿No tienes una cuenta? <a href="app/views/registro.php">Registrarse</a>
+    </div>
+    <br>
                     <div class="form-group">
                         <button type="submit" class="btn btn-login btn-block">Iniciar sesión</button>
                     </div>

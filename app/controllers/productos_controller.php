@@ -4,7 +4,7 @@ session_start(); // Iniciar la sesión al principio del archivo
 // Verificar si la sesión está activa
 if (!isset($_SESSION['cliente'])) {
     // Si la sesión no está activa, redirigir al usuario a la página de inicio de sesión
-    header("Location: inicio_sesion.php");
+    header("Location: ../../index.php");
     exit;
 }
 // La sesión está activa, puedes acceder a la información del usuario

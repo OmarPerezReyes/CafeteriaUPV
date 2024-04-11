@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cerrar_sesion.php">Cerrar Sesión</a>
+                    <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </div>

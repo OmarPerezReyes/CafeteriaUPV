@@ -1,7 +1,7 @@
 <?php
 
 require_once "Connection.php"; // Incluimos el archivo de conexión
-require_once "UsuarioModel.php"; // Incluimos el modelo de usuario
+require_once "../models/UsuarioModel.php"; // Incluimos el modelo de usuario
 
 // Verificar si se ha enviado el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registro"])) {
@@ -25,7 +25,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registro"])) {
         $mensajeError = "Error: El correo ya está registrado.";
     }
 }
-
-// Incluir la vista de registro
-require_once "registro.php";
 ?>

@@ -7,11 +7,8 @@
 <body>
     <h1>Registro de Usuario</h1>
 
-    <?php if (isset($mensajeError)): ?>
-        <p><?php echo $mensajeError; ?></p>
-    <?php endif; ?>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="../controllers/registro_controller.php" method="post">
         <label for="matricula">Matrícula:</label><br>
         <input type="text" id="matricula" name="matricula" required><br><br>
 
