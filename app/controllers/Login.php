@@ -24,6 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             #echo "Correo: " . $usuario['correo'] . "<br>";
             // Iniciar sesión y almacenar información del usuario en la variable de sesión
             $_SESSION['cliente'] =  $usuario['matricula'] ;
+            $_SESSION['nombre'] =  $usuario['nombre'] ;
+            $_SESSION['email'] =  $usuario['correo'] ;
             
             // Redirigir al usuario a la página de productos
             header("Location: productos_controller.php");

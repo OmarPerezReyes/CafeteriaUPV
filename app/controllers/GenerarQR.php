@@ -1,4 +1,34 @@
-<?php
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Código QR</title>
+    <!-- Agregar la referencia al CSS de Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-fill">
+                <li class="nav-item">
+                <a class="nav-link" href="productos_controller.php">Volver al Menú de Productos</a>
+
+                </li>
+            </ul>
+            <span class="nav-link"><?php echo $_SESSION['nombre']; ?></span>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="mt-4">Generar Código QR</h1>
+        <?php
 
 // Incluir el archivo de conexión
 require_once "Connection.php";
@@ -30,7 +60,8 @@ if ($result->num_rows > 0) {
 
     if ($qr_generated) {
         // Ruta de la imagen del código QR
-        $qr_image = '../../public/images/temp/pedido_' . $datos_pedido['codigo_Recogida'] . '.png';
+        $qr_image = '../../public/images/temp
+        ../../temp/pedido_' . $datos_pedido['codigo_Recogida'] . '.png';
 
         // Mostrar la imagen del código QR
         echo '<img src="' . $qr_image . '" alt="Código QR del Pedido ' . $id_pedido . '" />';
@@ -46,3 +77,10 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
+    </div>
+
+    <!-- Agregar la referencia al JS de Bootstrap y jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

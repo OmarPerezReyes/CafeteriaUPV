@@ -46,6 +46,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="productos_controller.php">Volver al Menú de Productos</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
                 </li>

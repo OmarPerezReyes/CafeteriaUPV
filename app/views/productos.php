@@ -7,27 +7,30 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav nav-fill">
-                <li class="nav-item">
-                    <a class="nav-link" href="carritoLlenoController.php">
-                        Carrito 
-                        <?php 
-                            // Obtener el número de elementos en el carrito de la sesión
-                            $numProductosEnCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
-                        ?>
-                        <span class="badge badge-pill badge-primary"><?php echo $numProductosEnCarrito; ?></span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="carritoLlenoController.php">
+                    Carrito 
+                    <?php 
+                        // Obtener el número de elementos en el carrito de la sesión
+                        $numProductosEnCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
+                    ?>
+                    <span class="badge badge-pill badge-primary"><?php echo $numProductosEnCarrito; ?></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+        <span class="nav-link"><?php echo $_SESSION['nombre']; ?></span>
+
+            <li class="nav-item ml-auto">
+                <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 
     <div class="container">
         <h1 class="mt-4">Menú de Productos</h1>

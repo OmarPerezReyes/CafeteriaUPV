@@ -5,7 +5,7 @@ require_once "phpqrcode/qrlib.php";
 
 function generarCodigoQR($datos_pedido)
 {
-    var_dump($datos_pedido);
+    #var_dump($datos_pedido);
     // Declaramos una carpeta temporal para guardar las imágenes generadas
     $dir = '../../public/images/temp/';
 
@@ -36,26 +36,11 @@ function generarCodigoQR($datos_pedido)
 
     // Verificar si el archivo se generó correctamente
     if (file_exists($filename)) {
-        echo "Archivo QR generado correctamente: <br>";
-        echo "<img src='" . $filename . "' alt='QR Code'><br>";
+       
         return true;
     } else {
-        echo "Error: No se pudo generar el archivo QR.<br>";
         return false;
     }
 }
-
-// Datos de prueba para depuración
-$datos_pedido = array(
-    'id_pedido' => '123',
-    'id_Cliente' => '456',
-    'fecha_Hora_Pedido' => '2024-04-16 10:30:00',
-    'estado_Pedido' => 'Pendiente',
-    'total_Pedido' => '50.00',
-    'codigo_Recogida' => 'ABCD1234'
-);
-
-// Llamar a la función para depuración
-generarCodigoQR($datos_pedido);
 
 ?>
