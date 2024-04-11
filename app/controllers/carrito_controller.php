@@ -1,44 +1,23 @@
 <?php
-
 session_start();
 
-// Verificar si la sesión está activa
-if (!isset($_SESSION['usuario'])) {
-    header("Location: inicio_sesion.php");
-    exit;
-}
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["agregar"])) {
-    // Agregar producto al carrito
-    $productoId = $_POST["agregar"];
-    if (!isset($_SESSION["carrito"])) {
-        $_SESSION["carrito"] = [];
+// Verificar si se ha enviado el ID del producto
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['agregar'])) {
+    // Obtener el ID del producto enviado desde el formulario
+    $id_producto = $_POST['agregar'];
+    
+    // Inicializar el array de productos en el carrito si no existe
+    if (!isset($_SESSION['carrito'])) {
+        $_SESSION['carrito'] = array();
     }
-    $_SESSION["carrito"][] = $productoId;
+    
+    // Agregar el ID del producto al array de productos en el carrito
+    $_SESSION['carrito'][] = $id_producto;
+    
+    // Enviar una respuesta de éxito si es necesario (puede ser útil para manejar la respuesta en el JavaScript)
+    echo "Producto agregado al carrito correctamente.";
+} else {
+    // Si no se ha enviado el ID del producto, enviar un mensaje de error
+    echo "Error: No se ha especificado el producto.";
 }
-
-require_once "Connection.php"; // Incluimos el archivo de conexión
-
-require_once "ProductoModel.php";
-
-// Instanciar el modelo de productos
-$productoModel = new ProductoModel($conexion);
-
-// Obtener los productos seleccionados
-$productosSeleccionados = [];
-foreach ($_SESSION["carrito"] as $productoId) {
-    $producto = $productoModel->obtenerProductoPorId($productoId);
-    if ($producto) {
-        $productosSeleccionados[] = $producto;
-    }
-}
-
-// Calcular el total de la compra
-$totalCompra = 0;
-foreach ($productosSeleccionados as $producto) {
-    $totalCompra += $producto["precio"];
-}
-
-// Cargar la vista
-require_once "carrito.php";
 ?>

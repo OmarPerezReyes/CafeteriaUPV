@@ -11,7 +11,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="carrito.php">Carrito</a>
+                    <a class="nav-link" href="carritoLlenoController.php">
+                        Carrito 
+                        <?php 
+                            // Obtener el número de elementos en el carrito de la sesión
+                            $numProductosEnCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
+                        ?>
+                        <span class="badge badge-pill badge-primary"><?php echo $numProductosEnCarrito; ?></span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="cerrar_sesion.php">Cerrar Sesión</a>
@@ -31,10 +38,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $producto['nombre_Producto']; ?></h5>
                         <p class="card-text">$<?php echo $producto['precio']; ?></p>
-                        <form action="agregar_al_carrito.php" method="post">
-                            <input type="hidden" name="agregar" value="<?php echo $producto['id_producto']; ?>">
-                            <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
-                        </form>
+                        <button type="button" class="btn btn-primary agregar-carrito" data-producto="<?php echo $producto['id_producto']; ?>">Agregar al Carrito</button>
                     </div>
                 </div>
             </div>
@@ -42,9 +46,33 @@
         </div>
     </div>
 
-    <!-- Agregar la referencia al JS de Bootstrap (opcional) -->
+    <!-- Agregar la referencia al JS de Bootstrap y jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+    // Script para manejar el evento de clic en el botón "Agregar al Carrito"
+    $(document).ready(function() {
+        $('.agregar-carrito').click(function() {
+            // Obtener el ID del producto desde el atributo "data-producto" del botón
+            var idProducto = $(this).data('producto');
+            
+            // Enviar el ID del producto al archivo agregar_al_carrito.php mediante AJAX
+            $.ajax({
+                type: 'POST',
+                url: '../controllers/carrito_controller.php',
+                data: { agregar: idProducto },
+                success: function(response) {
+                    // Manejar la respuesta si es necesario
+                    console.log(response);
+                    
+                    // Actualizar el número de elementos en el carrito en la burbuja
+                    var numProductosEnCarrito = parseInt($('.badge').text()) + 1;
+                    $('.badge').text(numProductosEnCarrito);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
