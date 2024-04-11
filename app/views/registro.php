@@ -4,39 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome para íconos -->
     <style>
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
+
         .login-container {
             margin-top: 50px;
         }
+
         .login-form {
             background-color: #ffffff;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
         }
+
         .login-header {
             text-align: center;
             margin-bottom: 40px;
         }
+
         .login-header h2 {
             color: #007bff;
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         .login-logo {
             width: 120px;
             height: auto;
             margin-bottom: 20px;
         }
+
         .form-group {
             position: relative;
             margin-bottom: 30px;
         }
+
         .form-group input {
             padding: 15px;
             border: 1px solid #ccc;
@@ -45,11 +53,13 @@
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
+
         .form-group input:focus {
             border-color: #007bff;
             outline: none;
             box-shadow: none;
         }
+
         .form-group i {
             position: absolute;
             top: 50%;
@@ -57,6 +67,7 @@
             transform: translateY(-50%);
             color: #ccc;
         }
+
         .btn-login {
             background-color: #007bff;
             border-color: #007bff;
@@ -66,6 +77,7 @@
             font-size: 18px;
             transition: background-color 0.3s ease;
         }
+
         .btn-login:hover {
             background-color: #0056b3;
             border-color: #0056b3;
@@ -78,7 +90,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 login-form">
                 <div class="login-header">
-                    <img src="/public/images/logo.png" alt="Logo de la cafetería" class="login-logo">
+                    <img src="public/images/logo.png" alt="Logo de la cafetería" class="login-logo">
                     <h2>Registro de Usuario</h2>
                 </div>
 
@@ -88,28 +100,28 @@
 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
-                    <label for="matricula">Matrícula:</label><br>
-                    <input type="number" id="matricula" name="matricula" min="0" class="form-control" required><br><br>
+                        <label for="matricula">Matrícula:</label><br>
+                        <input type="number" id="matricula" name="matricula" min="0" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="nombre">Nombre:</label><br>
-                    <input type="text" id="nombre" name="nombre" class="form-control" required><br><br>
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="apellido">Apellido:</label><br>
-                    <input type="text" id="apellido" name="apellido" class="form-control" required><br><br>
+                        <label for="apellido">Apellido:</label><br>
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="correo">Correo:</label><br>
-                    <input type="email" id="correo" name="correo" class="form-control" required><br><br>
+                        <label for="correo">Correo:</label><br>
+                        <input type="email" id="correo" name="correo" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="contrasena">Contraseña:</label><br>
-                    <input type="password" id="contrasena" name="contrasena" class="form-control" required><br><br>
+                        <label for="contrasena">Contraseña:</label><br>
+                        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="telefono">Teléfono:</label><br>
-                    <input type="number" id="telefono" name="telefono" class="form-control" required><br><br>
+                        <label for="telefono">Teléfono:</label><br>
+                        <input type="number" id="telefono" name="telefono" class="form-control" required>
                     </div>
                     <button type="submit" name="registro" class="btn btn-login btn-block">Registrar</button>
                 </form>
