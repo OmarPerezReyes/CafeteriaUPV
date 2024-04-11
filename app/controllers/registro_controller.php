@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registro"])) {
     // Intentar registrar al usuario
     if ($usuarioModel->registrarUsuario($matricula, $nombre, $apellido, $correo, $contrasena, $telefono)) {
         // Redirigir al usuario a la página de productos si el registro es exitoso
-        header("Location: productos_controller.php");
+        header("Location: ../../index.php");
         exit;
     } else {
         // Mostrar un mensaje de error si el registro falla

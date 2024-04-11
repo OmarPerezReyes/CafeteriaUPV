@@ -24,13 +24,13 @@ if ($result->num_rows > 0) {
         'total_Pedido' => $row['total_Pedido'],
         'codigo_Recogida' => $row['codigo_Recogida']
     );
-
+    #echo var_dump($datos_pedido);
     // Llamar a la función del modelo para generar el código QR
     $qr_generated = generarCodigoQR($datos_pedido);
 
     if ($qr_generated) {
         // Ruta de la imagen del código QR
-        $qr_image = '../../temp/pedido_' . $datos_pedido['codigo_Recogida'] . '.png';
+        $qr_image = '../../public/images/temp/pedido_' . $datos_pedido['codigo_Recogida'] . '.png';
 
         // Mostrar la imagen del código QR
         echo '<img src="' . $qr_image . '" alt="Código QR del Pedido ' . $id_pedido . '" />';

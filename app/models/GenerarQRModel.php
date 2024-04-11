@@ -1,12 +1,13 @@
 <?php
 
 // Agregar la librería para generar códigos QR
-require_once "../../phpqrcode/qrlib.php";
+require_once "phpqrcode/qrlib.php";
 
 function generarCodigoQR($datos_pedido)
 {
+    var_dump($datos_pedido);
     // Declaramos una carpeta temporal para guardar las imágenes generadas
-    $dir = '../../temp/';
+    $dir = '../../public/images/temp/';
 
     // Si no existe la carpeta la creamos
     if (!file_exists($dir)) {
