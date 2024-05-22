@@ -1,5 +1,4 @@
 <?php
-
 require_once "Connection.php"; // Incluimos el archivo de conexión
 require_once "../models/UsuarioModel.php"; // Incluimos el modelo de usuario
 
@@ -21,8 +20,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["registro"])) {
         header("Location: ../../index.php");
         exit;
     } else {
-        // Mostrar un mensaje de error si el registro falla
-        $mensajeError = "Error: El correo ya está registrado.";
+        // Construir el bloque de JavaScript para el SweetAlert y la redirección
+        $script = '
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "La matrícula ya está registrada."
+            }).then(function() {
+                window.location.href = "../views/registro.php"; // Redirige a página de registro
+            });
+        });
+        </script>
+        ';
+
+        // Imprimir el bloque de JavaScript
+        echo $script;
     }
 }
 ?>

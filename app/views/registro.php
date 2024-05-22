@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Font Awesome para íconos -->
     <style>
         body {
             background-color: #f8f9fa;
@@ -97,31 +98,41 @@
 
                 <form action="../controllers/registro_controller.php" method="post">
                     <div class="form-group">
-                        <label for="matricula">Matrícula:</label><br>
-                        <input type="text" id="matricula" name="matricula" min="0" class="form-control" required>
+                        <input type="text" id="matricula" placeholder="Matrícula" name="matricula" class="form-control"
+                            required pattern="\d+">
+                        <i class="fas fa-thin fa-hashtag"></i>
                     </div>
                     <div class="form-group">
-                        <label for="nombre">Nombre:</label><br>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                        <input type="text" id="nombre" placeholder="Nombre" name="nombre" class="form-control" required
+                            pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+">
+                        <i class="fas fa-regular fa-user"></i>
                     </div>
                     <div class="form-group">
-                        <label for="apellido">Apellido:</label><br>
-                        <input type="text" id="apellido" name="apellido" class="form-control" required>
+                        <input type="text" id="apellido" placeholder="Apellido" name="apellido" class="form-control"
+                            required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+">
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo:</label><br>
-                        <input type="email" id="correo" name="correo" class="form-control" required>
+                        <input type="email" id="correo" placeholder="Correo" name="correo" class="form-control"
+                            required>
+                        <i class="fas fa-envelope"></i>
                     </div>
                     <div class="form-group">
-                        <label for="contrasena">Contraseña:</label><br>
-                        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+                        <input type="password" id="contrasena" placeholder="Contraseña" name="contrasena"
+                            class="form-control" required>
+                        <i class="fas fa-lock"></i>
                     </div>
                     <div class="form-group">
-                        <label for="telefono">Teléfono:</label><br>
-                        <input type="text" id="telefono" name="telefono" class="form-control" required>
+                        <input type="text" id="telefono" placeholder="Teléfono" name="telefono" class="form-control"
+                            required pattern="\d+">
+                        <i class="fas fa-solid fa-phone"></i>
                     </div>
                     <button type="submit" name="registro" class="btn btn-login btn-block">Registrar</button>
+
                 </form>
+                <br />
+                <div class="text-center">
+                    ¿Ya tienes una cuenta? <a href="../../index.php">Iniciar Sesión</a>
+                </div>
             </div>
         </div>
     </div>

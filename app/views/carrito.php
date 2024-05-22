@@ -83,9 +83,10 @@
                         <p>Total de compra: $<?php echo $totalCompra; ?></p>
                     </div>
 
-<div class="text-center mt-4">
-    <button class="btn btn-success">Realizar Pedido</button>
+                    <div class="text-center mt-4">
+    <a href="../controllers/GenerarQR.php" class="btn btn-success">Realizar Pedido</a>
 </div>
+
 
                 <?php endif; ?>
             </div>

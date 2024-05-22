@@ -32,7 +32,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             // No se encontró el usuario, imprimir mensaje de error
-            echo "No se ha encontrado el usuario.";
+            // Construir el bloque de JavaScript para el SweetAlert y la redirección
+        $script = '
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se ha encontrado el usuario."
+            }).then(function() {
+                window.location.href = "../../index.php"; // Redirige a página de registro
+            });
+        });
+        </script>
+        ';
+
+        // Imprimir el bloque de JavaScript
+        echo $script;
         }      
     }
 }
