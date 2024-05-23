@@ -56,6 +56,42 @@ if (!empty($_SESSION['carrito'])) {
         .ticket hr {
             border-top: 1px dashed #ccc;
         }
+        .help-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .help-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -68,9 +104,13 @@ if (!empty($_SESSION['carrito'])) {
             </ul>
             <span class="nav-link"><?php echo $_SESSION['nombre']; ?></span>
             <ul class="navbar-nav ml-auto">
+                <div class="text-center">
+                    <button id="helpButton" class="btn btn-info">Ayuda</button>
+                </div>
                 <li class="nav-item ml-auto">
                     <a class="nav-link" href="../controllers/cerrar_sesion.php">Cerrar Sesión</a>
                 </li>
+
             </ul>
         </div>
     </nav>
@@ -96,7 +136,17 @@ if (!empty($_SESSION['carrito'])) {
             </div>
         </div>
     </div>
-    
+        <!-- Campo de ayuda -->
+    <div id="helpModal" class="help-modal">
+        <div class="help-modal-content">
+            <span class="close">&times;</span>
+            <h2>Ayuda</h2>
+            <p>Aqui puede observar los detalles de su producto al enfocar el codigo qr con la camara </p>
+            <p>Si desea volver al menú de click en "Volver al Menú de Productos"</p>
+            <p>Si desea Cerrar Sesión, de click en el boton "Cerrar Sesión"</p>
+            <p>Si desea salir de la "Ayuda", haga clic en la "X" o presione la tecla "Esc".</p>
+        </div>
+    </div>
     <?php
     // Incluir el archivo de conexión
     require_once "Connection.php";
@@ -135,5 +185,36 @@ if (!empty($_SESSION['carrito'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var modal = document.getElementById("helpModal");
+        var btn = document.getElementById("helpButton");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "F1") {
+                    event.preventDefault();
+                    modal.style.display = "block";
+                }
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    });
+</script>
 </body>
 </html>

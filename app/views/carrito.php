@@ -31,6 +31,42 @@
         .navbar {
             margin-bottom: 20px; /* Añadir más margen inferior a la barra de navegación */
         }
+        .help-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .help-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +91,9 @@
     </nav>
 
     <div class="container mt-4">
+        <div class="text-center">
+            <button id="helpButton" class="btn btn-info">Ayuda</button>
+        </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <?php if (empty($productosSeleccionados)): ?>
@@ -86,10 +125,20 @@
                     <div class="text-center mt-4">
     <a href="../controllers/GenerarQR.php" class="btn btn-success">Realizar Pedido</a>
 </div>
-
-
                 <?php endif; ?>
             </div>
+        </div>
+    </div>
+        <!-- Campo de ayuda -->
+        <div id="helpModal" class="help-modal">
+        <div class="help-modal-content">
+            <span class="close">&times;</span>
+            <h2>Ayuda</h2>
+            <p>Si desea eliminar un producto, de click en el boton "Eliminar"</p>
+            <p>Si desea realizar el Pedido de click en "Realizar Pedido"</p>
+            <p>Si desea volver al Menú de Productos, de click en el menu "Volver al Menú de Productos"</p>
+            <p>Si desea Cerrar Sesión, de click en el boton "Cerrar Sesión"</p>
+            <p>Si desea salir de la "Ayuda", haga clic en la "X" o presione la tecla "Esc".</p>
         </div>
     </div>
 
@@ -112,6 +161,37 @@
                 });
             });
         });
+    // Script para mostrar la ayuda
+    $(document).ready(function() {
+            var modal = document.getElementById("helpModal");
+            var btn = document.getElementById("helpButton");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "F1") {
+                    event.preventDefault();
+                    modal.style.display = "block";
+                }
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            });
+        });
     </script>
+    
 </body>
 </html>

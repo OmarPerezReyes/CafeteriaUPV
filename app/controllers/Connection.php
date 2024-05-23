@@ -1,8 +1,8 @@
 <?php  
     // Conexion a la base de datos 
     $servername = "localhost";
-    $username = "admin";
-    $password = "be17af928cb8ea2ca2418261803f684deb3e60a9b3537483";
+    $username = "root";
+    $password = "";
     $dbname = "jaguares_con_hambre";
 
     // Crear conexión 

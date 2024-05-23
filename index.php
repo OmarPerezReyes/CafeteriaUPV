@@ -84,13 +84,50 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
+        .help-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .help-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
     </style>
 </head>
 
 <body>
     <div class="container login-container">
         <div class="text-center">
-            <a href="app/views/registro.php">Ayuda</a>
+            <button id="helpButton" class="btn btn-info">Ayuda</button>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6 login-form">
@@ -119,9 +156,51 @@
             </div>
         </div>
     </div>
+    <div id="helpModal" class="help-modal">
+        <div class="help-modal-content">
+            <span class="close">&times;</span>
+            <h2>Ayuda</h2>
+            <p>Paso 1: Ingrese su correo electrónico registrado en el campo "Correo electrónico".</p>
+            <p>Paso 2: Ingrese su contraseña en el campo "Contraseña".</p>
+            <p>Paso 3: Haga clic en el botón "Iniciar sesión" para acceder a su cuenta.</p>
+            <p>Si no tiene una cuenta, haga clic en "Registrarse" para crear una.</p>
+            <p>Para cerrar la ventana de ayuda, haga clic en la "X" o presione la tecla "Esc".</p>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var modal = document.getElementById("helpModal");
+            var btn = document.getElementById("helpButton");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "F1") {
+                    event.preventDefault();
+                    modal.style.display = "block";
+                }
+                if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+            });
+        });
+    </script>
 </body>
 
 </html>

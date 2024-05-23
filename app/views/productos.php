@@ -18,6 +18,27 @@
         .card:hover {
             transform: translateY(-10px);
         }
+        .help-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .help-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +55,9 @@
                     <span class="badge badge-pill badge-primary"><?php echo $numProductosEnCarrito; ?></span>
                 </a>
             </li>
+            <div class="text-center">
+                <button id="helpButton" class="btn btn-info">Ayuda</button>
+            </div>
         </ul>
         <ul class="navbar-nav ml-auto">
             <span class="nav-link"><?php echo $_SESSION['nombre']; ?></span>
@@ -73,6 +97,19 @@
     </div>
 </div>
 
+<div id="helpModal" class="help-modal">
+    <div class="help-modal-content">
+        <span class="close">&times;</span>
+        <h2>Ayuda</h2>
+        <p>Paso 1: Busque un producto en el menú.</p>
+        <p>Paso 2: Haga clic en el botón "Agregar al Carrito" del producto deseado.</p>
+        <p>Paso 3: Repita el paso 1 y 2 si desea agregar más productos.</p>
+        <p>Paso 4: Haga clic en "Carrito" para revisar los productos seleccionados.</p>
+        <p>Si desea cerrar sesion, haga click en "Cerrar Sesión"</p>
+        <p>Si desea salir de la "Ayuda", haga clic en la "X" o presione la tecla "Esc".</p>
+    </div>
+</div>
+
 
 <!-- Modal para mostrar la imagen y detalles -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
@@ -99,7 +136,37 @@
 <!-- Agregar la referencia al JS de Bootstrap y jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var modal = document.getElementById("helpModal");
+        var btn = document.getElementById("helpButton");
+        var span = document.getElementsByClassName("close")[0];
 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "F1") {
+                    event.preventDefault();
+                    modal.style.display = "block";
+                }
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    });
+</script>
 <script>
     // Script para manejar el evento de clic en el botón "Agregar al Carrito"
     $(document).ready(function() {
